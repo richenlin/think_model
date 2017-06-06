@@ -1,8 +1,8 @@
 # 介绍
 -----
 
-[![npm version](https://badge.fury.io/js/thinkkoa.svg)](https://badge.fury.io/js/think_model)
-[![Dependency Status](https://david-dm.org/richenlin/thinkkoa.svg)](https://david-dm.org/richenlin/think_model)
+[![npm version](https://badge.fury.io/js/think_model.svg)](https://badge.fury.io/js/think_model)
+[![Dependency Status](https://david-dm.org/richenlin/think_model.svg)](https://david-dm.org/richenlin/think_model)
 
 Model for ThinkKoa, used ThinkORM
 

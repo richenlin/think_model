@@ -4,7 +4,7 @@
   "description": "Model for ThinkKoa, use ThinkORM.",
   "main": "index.js",
   "scripts": {
-    "test": "npm run eslint && npm run test-cov",
+    "test": "npm run eslint",
     "test-cov": "istanbul cover ./node_modules/mocha/bin/_mocha -- -t 50000 --recursive  -R spec test/",
     "prepublish": "npm test",
     "eslint": "eslint index.js"
