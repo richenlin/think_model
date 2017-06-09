@@ -22,6 +22,7 @@
     "mocha": "^3.2.0"
   },
   "dependencies": {
+    "think_lib": "^1.x.x",
     "thinkorm": "^1.x.x"
   }
 }
