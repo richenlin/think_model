@@ -17,7 +17,7 @@ module.exports = function (options) {
         options.db_ext_config.db_log_sql = think.app_debug || false;
         let ps = [], n;
         for (n in models) {
-            ps.push(orm.setCollection(n, options));
+            ps.push(orm.setCollection(models[n], options));
         }
         return Promise.all(ps);
     });
