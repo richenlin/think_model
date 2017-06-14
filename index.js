@@ -14,6 +14,8 @@ module.exports = function (options) {
         if (!options || !models || !options.db_type || !options.db_host) {
             return;
         }
+
+        lib.define(think.model, 'base', orm, 1);
         //print sql
         options.db_ext_config.db_log_sql = think.app_debug || false;
         let ps = [], n;
