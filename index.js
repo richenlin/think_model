@@ -6,7 +6,6 @@
  * @version    17/6/6
  */
 const lib = require('think_lib');
-const orm = require('thinkorm');
 /**
  * default options
  */
@@ -32,6 +31,7 @@ const defaultOptions = {
 module.exports = function (options) {
     options = options ? lib.extend(defaultOptions, options, true) : defaultOptions;
     think.app.once('appReady', () => {
+        const orm = require('thinkorm');
         let models = think._caches.models || null;
         if (!options || !models || !options.db_type || !options.db_host) {
             return;
