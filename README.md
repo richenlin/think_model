@@ -2,7 +2,7 @@
 -----
 
 [![npm version](https://badge.fury.io/js/think_model.svg)](https://badge.fury.io/js/think_model)
-[![Dependency Status](https://david-dm.org/richenlin/think_model.svg)](https://david-dm.org/richenlin/think_model)
+[![Dependency Status](https://david-dm.org/thinkkoa/think_model.svg)](https://david-dm.org/thinkkoa/think_model)
 
 Model for ThinkKoa, used ThinkORM
 
