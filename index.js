@@ -39,7 +39,7 @@ module.exports = function (options) {
 
         lib.define(think.model, 'base', orm, 1);
         //print sql
-        options.db_ext_config.db_log_sql = think.app_debug || false;
+        options.db_ext_config.db_log_sql = process.env.NODE_ENV === 'development' ? true : false;
         let ps = [], n;
         for (n in models) {
             ps.push(orm.setCollection(models[n], options));
