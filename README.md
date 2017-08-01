@@ -10,7 +10,11 @@ Model for ThinkKoa, used ThinkORM
 -----
 
 ```
-npm i think_model
+npm i thinkorm --save
+//使用mysql数据库
+npm i thinkorm_adapter_mysql --save
+
+npm i think_model --save
 ```
 
 # 使用
@@ -27,7 +31,7 @@ list: [...,'model'], //加载的中间件列表
 config: { //中间件配置
     ...,
     model: {
-        db_type: '', // 数据库类型,支持mysql,mongo,postgressql
+        db_type: 'mysql', // 数据库类型,支持mysql,postgressql
         db_host: '', // 服务器地址
         db_port: 3306, // 端口
         db_name: '', // 数据库名
