@@ -37,7 +37,41 @@ module.exports = function (options) {
             return;
         }
 
-        // lib.define(think.model, 'base', orm, 1);
+        /**
+         * Get or instantiate a model class
+         * 
+         * @param {any} name 
+         * @param {any} config 
+         * @returns 
+         */
+        !lib.model && lib.define(lib, 'model', function (name, config) {
+            try {
+                let cls;
+                if (!lib.isString(name) && name.__filename) {
+                    cls = lib.require(name.__filename);
+                } else if (think._caches.models[name]) {
+                    cls = think._caches.models[name];
+                }
+                if (!cls) {
+                    throw Error(`Model ${name} is undefined`);
+                }
+                if (config === undefined) {
+                    return cls;
+                }
+                if (lib.isEmpty(config)) {
+                    config = options;
+                } else {
+                    config = lib.extend(options, config);
+                }
+                //print sql
+                config.db_ext_config && (config.db_ext_config.db_log_sql = think.app_debug || false);
+                return new cls(config || {});
+            } catch (err) {
+                think.logger ? think.logger.error(err) : console.error(err);
+                return null;
+            }
+        });
+
         //print sql
         options.db_ext_config.db_log_sql = process.env.NODE_ENV === 'development' ? true : false;
         let ps = [], n;
