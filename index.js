@@ -36,6 +36,8 @@ module.exports = function (options) {
         if (!options || !models || !options.db_type || !options.db_host) {
             return;
         }
+        //print sql
+        options.db_ext_config.db_log_sql = process.env.NODE_ENV === 'development' ? true : false;
 
         /**
          * Get or instantiate a model class
@@ -72,8 +74,7 @@ module.exports = function (options) {
             }
         });
 
-        //print sql
-        options.db_ext_config.db_log_sql = process.env.NODE_ENV === 'development' ? true : false;
+        //load models..
         let ps = [], n;
         for (n in models) {
             ps.push(orm.setCollection(models[n], options));
