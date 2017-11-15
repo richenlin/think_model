@@ -28,9 +28,10 @@ const defaultOptions = {
     }
 };
 /*eslint-disable consistent-return */
-module.exports = function (options) {
+module.exports = function (options, app) {
     options = options ? lib.extend(defaultOptions, options, true) : defaultOptions;
-    think.app.once('appReady', () => {
+    let koa = global.think ? (think.app || {}) : (app.koa || {});
+    koa.once('appReady', () => {
         const orm = require('thinkorm');
         let models = think._caches.models || null;
         if (!options || !models || !options.db_type || !options.db_host) {
@@ -46,7 +47,7 @@ module.exports = function (options) {
          * @param {any} config 
          * @returns 
          */
-        !lib.model && lib.define(lib, 'model', function (name, config) {
+        !think.model && lib.define(think, 'model', function (name, config) {
             try {
                 let cls;
                 if (!lib.isString(name) && name.__filename) {
