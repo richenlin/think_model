@@ -6,6 +6,7 @@
  * @version    17/6/6
  */
 const lib = require('think_lib');
+const loader = require('think_loader');
 /**
  * default options
  */
@@ -30,51 +31,15 @@ const defaultOptions = {
 /*eslint-disable consistent-return */
 module.exports = function (options, app) {
     options = options ? lib.extend(defaultOptions, options, true) : defaultOptions;
-    let koa = global.think ? (think.app || {}) : (app.koa || {});
-    koa.once('appReady', () => {
+    
+    app.once('appReady', () => {
         const orm = require('thinkorm');
-        let models = think._caches.models || null;
+        let models = loader(app.app_path, {root: 'model', prefix: ''}) || null;
         if (!options || !models || !options.db_type || !options.db_host) {
             return;
         }
         //print sql
         options.db_ext_config.db_log_sql = process.env.NODE_ENV === 'development' ? true : false;
-
-        /**
-         * Get or instantiate a model class
-         * 
-         * @param {any} name 
-         * @param {any} config 
-         * @returns 
-         */
-        !think.model && lib.define(think, 'model', function (name, config) {
-            try {
-                let cls;
-                if (!lib.isString(name) && name.__filename) {
-                    cls = lib.require(name.__filename);
-                } else if (think._caches.models[name]) {
-                    cls = think._caches.models[name];
-                }
-                if (!cls) {
-                    throw Error(`Model ${name} is undefined`);
-                }
-                if (config === undefined) {
-                    return cls;
-                }
-                if (lib.isEmpty(config)) {
-                    config = options;
-                } else {
-                    config = lib.extend(options, config);
-                }
-                //print sql
-                config.db_ext_config && (config.db_ext_config.db_log_sql = think.app_debug || false);
-                return new cls(config || {});
-            } catch (err) {
-                think.logger ? think.logger.error(err) : console.error(err);
-                return null;
-            }
-        });
-
         //load models..
         let ps = [], n;
         for (n in models) {
