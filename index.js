@@ -7,6 +7,7 @@
  */
 const lib = require('think_lib');
 const loader = require('think_loader');
+const thinkorm = require('thinkorm');
 /**
  * default options
  */
@@ -33,7 +34,6 @@ module.exports = function (options, app) {
     options = options ? lib.extend(defaultOptions, options, true) : defaultOptions;
     
     app.once('appReady', () => {
-        const orm = require('thinkorm');
         let models = loader(app.app_path, {root: 'model', prefix: ''}) || null;
         if (!options || !models || !options.db_type || !options.db_host) {
             return;
@@ -43,7 +43,7 @@ module.exports = function (options, app) {
         //load models..
         let ps = [], n;
         for (n in models) {
-            ps.push(orm.setCollection(models[n], options));
+            ps.push(thinkorm.setCollection(models[n], options));
         }
         return Promise.all(ps);
     });
