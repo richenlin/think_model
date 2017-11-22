@@ -1,6 +1,6 @@
 {
   "name": "think_model",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "Model Middleware for ThinkKoa, use ThinkORM.",
   "main": "index.js",
   "scripts": {
