@@ -1,6 +1,8 @@
 # 介绍
 -----
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/thinkkoa/think_model.svg)](https://greenkeeper.io/)
+
 [![npm version](https://badge.fury.io/js/think_model.svg)](https://badge.fury.io/js/think_model)
 [![Dependency Status](https://david-dm.org/thinkkoa/think_model.svg)](https://david-dm.org/thinkkoa/think_model)
 
